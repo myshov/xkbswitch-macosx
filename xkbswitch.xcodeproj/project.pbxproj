@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B0053BA41A56B1AE00B2EB8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0053BA31A56B1AE00B2EB8F /* main.m */; };
+		B0053BAB1A56B41800B2EB8F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0053BAA1A56B41800B2EB8F /* Carbon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		B0053BA01A56B1AE00B2EB8F /* xkbswitch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xkbswitch; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0053BA31A56B1AE00B2EB8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B0053BAA1A56B41800B2EB8F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0053BAB1A56B41800B2EB8F /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +44,7 @@
 		B0053B971A56B1AE00B2EB8F = {
 			isa = PBXGroup;
 			children = (
+				B0053BAA1A56B41800B2EB8F /* Carbon.framework */,
 				B0053BA21A56B1AE00B2EB8F /* xkbswitch */,
 				B0053BA11A56B1AE00B2EB8F /* Products */,
 			);
@@ -202,6 +206,7 @@
 		B0053BA81A56B1AE00B2EB8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -209,6 +214,7 @@
 		B0053BA91A56B1AE00B2EB8F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -232,6 +238,7 @@
 				B0053BA91A56B1AE00B2EB8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
