@@ -1,26 +1,26 @@
-#Xkbswitch
+#Xkbswitch-macosx
 
 Console keyboard layout switcher for Mac OS X
 
 ##Usage: 
-xkbswitch -g|s [-n|e] [value]
-where
--g - get mode
--s - set mode
--n - setting and getting with numeric mode (default)
--e - setting and getting with string mode
--l - list all available keyboard layouts (their names)
+xkbswitch -g|s [-n|e] [value]<br/>
+where<br/>
+-g - get mode<br/>
+-s - set mode<br/>
+-n - setting and getting with numeric mode (default)<br/>
+-e - setting and getting with string mode<br/>
+-l - list all available keyboard layouts (their names)<br/>
 
 ##Examples:
 ####setting:
-$ ./xkbswitch -se RussianWin
-$ ./xkbswitch -se US
-$ ./xkbswitch -s 2
-$ ./xkbswitch -s 1
+$ ./xkbswitch -se RussianWin<br/>
+$ ./xkbswitch -se US<br/>
+$ ./xkbswitch -s 2<br/>
+$ ./xkbswitch -s 1<br/>
 
 ####getting:
-$ ./xkbswitch -ge 
-$ ./xkbswitch -g
+$ ./xkbswitch -ge <br/>
+$ ./xkbswitch -g<br/>
 
 ##License
 The MIT License (MIT)
