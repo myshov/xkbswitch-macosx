@@ -1,26 +1,48 @@
 #Xkbswitch-macosx
 
-Console keyboard layout switcher for Mac OS X
+Console keyboard layout switcher for Mac OS X.
 
-##Usage: 
-xkbswitch -g|s [-n|e] [value]<br/>
-where<br/>
--g - get mode<br/>
--s - set mode<br/>
--n - setting and getting with numeric mode (default)<br/>
--e - setting and getting with string mode<br/>
--l - list all available keyboard layouts (their names)<br/>
+Main goal for this utility is providing possibility for [vim-xkbswitch](https://github.com/lyokha/vim-xkbswitch) plugin for
+changing the keyboard layout in Mac&nbsp;OS&nbsp;X. It's pretty useful for those who
+writes in two or more languages. Also you can use this whenever you need to switch
+layouts from terminal or get current layout in terminal (for example, for tmux statusline,
+when tmux running in fullscreen terminal).
+
+##Vim integration
+For integration with vim-xkbswith you need to install this [library](https://github.com/myshov/libxkbswitch-macosx) and follow instructions from there.
+
+##Installation
+For installation put executable file from bin directory in any directory in your $PATH
+variable. For example you can put it into  `/usr/local/bin` with this command (if source
+files of utility in your `Download` directory):
+```shell
+$ cp ~/Download/xkbswitch-macosx/bin/xkbswitch /usr/local/bin
+```
+##Usage:
+```
+xkbswitch -g|s [-n|e] [value]
+where:
+-g - get number of layout
+-s - set layout by number of list of layouts
+-n - code mode (default mode)
+-e - string mode (combine it with -g|s to get current layout name or set layouts by its name)
+-l - list all available keyboard layouts (their names)
+```
 
 ##Examples:
-####setting:
-$ ./xkbswitch -se RussianWin<br/>
-$ ./xkbswitch -se US<br/>
-$ ./xkbswitch -s 2<br/>
-$ ./xkbswitch -s 1<br/>
+####set layout:
+```shell
+$ ./xkbswitch -se RussianWin
+$ ./xkbswitch -se US
+$ ./xkbswitch -s 2
+$ ./xkbswitch -s 1
+```
 
-####getting:
-$ ./xkbswitch -ge <br/>
-$ ./xkbswitch -g<br/>
+####get current layout:
+```shell
+$ ./xkbswitch -ge
+$ ./xkbswitch -g
+```
 
 ##License
 The MIT License (MIT)
