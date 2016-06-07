@@ -26,6 +26,16 @@
 #import <Foundation/Foundation.h>
 #import <Carbon/Carbon.h>
 
+
+OSStatus set_by_name(const char** argv, const NSString* prefix) {
+    NSString *macosx_layout_name;
+    macosx_layout_name = [prefix stringByAppendingString:[NSString stringWithUTF8String:*argv]];
+    NSArray* sources = CFBridgingRelease(TISCreateInputSourceList((__bridge CFDictionaryRef)@{ (__bridge NSString*)kTISPropertyInputSourceID :  macosx_layout_name}, FALSE));
+    TISInputSourceRef source = (__bridge TISInputSourceRef)sources[0];
+    OSStatus status = TISSelectInputSource(source);
+    return status;
+}
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSArray *layouts = [[NSArray alloc] initWithObjects:
@@ -251,14 +261,15 @@ int main(int argc, const char * argv[]) {
             exit(0);
         } else if (set_mode) {
             if (layout_by_name) {
-                NSString *macosx_layout_name;
-                macosx_layout_name = [@"com.apple.keylayout." stringByAppendingString:[NSString stringWithUTF8String:*argv]];
-                NSArray* sources = CFBridgingRelease(TISCreateInputSourceList((__bridge CFDictionaryRef)@{ (__bridge NSString*)kTISPropertyInputSourceID :  macosx_layout_name}, FALSE));
-                TISInputSourceRef source = (__bridge TISInputSourceRef)sources[0];
-                OSStatus status = TISSelectInputSource(source);
-                if (status != noErr)
-                    printf("There is no active layout with name \"%s\"\n", *argv);
-                
+                OSStatus status = set_by_name(argv, @"com.apple.keylayout.");
+                if (status != noErr) {
+                    printf("There is no active layout with name in the default prefix \"%s\"\n", *argv);
+                    printf("Trying with the org.unknown.keylayout prefix...\n");
+                    status = set_by_name(argv, @"org.unknown.keylayout.");
+                    if (status != noErr) {
+                        printf("Unable to find an active layout with this name.\n");
+                    }
+                }
             } else if (layout_by_num) {
                 // Get the first argument. It is index of wanted keyboard layout
                 int wantedSourceIndex = atoi(*argv);
@@ -281,3 +292,5 @@ int main(int argc, const char * argv[]) {
     }
     return 0;
 }
+
+
