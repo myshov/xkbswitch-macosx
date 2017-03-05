@@ -2,11 +2,11 @@
 
 Console keyboard layout switcher for Mac OS X.
 
-Main goal for this utility is providing possibility for [vim-xkbswitch](https://github.com/lyokha/vim-xkbswitch) plugin for
-changing the keyboard layout in Mac&nbsp;OS&nbsp;X. It's pretty useful for those who
-writes in two or more languages. Also you can use this whenever you need to switch
-layouts from terminal or get current layout in terminal (for example, for tmux statusline,
-when tmux running in fullscreen terminal).
+The utility for switching current layout in terminal. You can use it whenever you need
+that functionality (for example, for tmux statusline when one is running in fullscreen
+terminal). Also you can use it as auxilary utility for [vim-xkbswitch](https://github.com/lyokha/vim-xkbswitch) plugin for
+changing the keyboard layout in Mac&nbsp;OS&nbsp;X. The utility should work on all versions
+of Mac OS X since 10.6.
 
 ##Vim integration
 For integration with vim-xkbswith you need to install this [library](https://github.com/myshov/libxkbswitch-macosx) and follow instructions from there.
