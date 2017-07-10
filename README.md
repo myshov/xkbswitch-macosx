@@ -1,4 +1,4 @@
-#Xkbswitch-macosx
+# Xkbswitch-macosx
 
 Console keyboard layout switcher for Mac OS X.
 
@@ -8,17 +8,17 @@ terminal). Also you can use it as auxilary utility for [vim-xkbswitch](https://g
 changing the keyboard layout in Mac&nbsp;OS&nbsp;X. The utility should work on all versions
 of Mac OS X since 10.6.
 
-##Vim integration
+## Vim integration
 For integration with vim-xkbswith you need to install this [library](https://github.com/myshov/libxkbswitch-macosx) and follow instructions from there.
 
-##Installation
+## Installation
 For installation put executable file from bin directory in any directory in your $PATH
 variable. For example you can put it into  `/usr/local/bin` with this command (if source
 files of utility in your `Download` directory):
 ```shell
 $ cp ~/Download/xkbswitch-macosx/bin/xkbswitch /usr/local/bin
 ```
-##Usage:
+## Usage:
 ```
 xkbswitch -g|s [-n|e] [value]
 where:
@@ -29,8 +29,8 @@ where:
 -l - list all available keyboard layouts (their names)
 ```
 
-##Examples:
-####set layout:
+## Examples:
+#### set layout:
 ```shell
 $ ./xkbswitch -se RussianWin
 $ ./xkbswitch -se US
@@ -38,13 +38,13 @@ $ ./xkbswitch -s 2
 $ ./xkbswitch -s 1
 ```
 
-####get current layout:
+#### get current layout:
 ```shell
 $ ./xkbswitch -ge
 $ ./xkbswitch -g
 ```
 
-##License
+## License
 The MIT License (MIT)
 
 Copyright (c) 2015 Alexander Myshov
