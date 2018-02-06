@@ -33,6 +33,19 @@ OSStatus set_by_name(const char** argv, const NSString* prefix) {
     NSArray* sources = CFBridgingRelease(TISCreateInputSourceList((__bridge CFDictionaryRef)@{ (__bridge NSString*)kTISPropertyInputSourceID :  macosx_layout_name}, FALSE));
     TISInputSourceRef source = (__bridge TISInputSourceRef)sources[0];
     OSStatus status = TISSelectInputSource(source);
+
+    // according to https://dingmingxin.github.io/blog/2017/09/03/%E8%A7%A3%E5%86%B3ghostskb%E7%9A%84%E4%B8%80%E4%BA%9Bbug/
+    // don't know whether it is effictive
+    NSNumber* pIsSelectCapable = (__bridge NSNumber*)(TISGetInputSourceProperty(source, kTISPropertyInputSourceIsSelectCapable));
+    BOOL canSelect = [pIsSelectCapable boolValue];
+    NSNumber *pIsEnableCapable= (__bridge NSNumber *)(TISGetInputSourceProperty(source, kTISPropertyInputSourceIsEnableCapable));
+    BOOL canEnable = [pIsEnableCapable boolValue];
+    if (canEnable) {
+      TISEnableInputSource(source);
+    }
+    if (canSelect) {
+      status = TISSelectInputSource(source);
+    }
     return status;
 }
 
@@ -284,6 +297,18 @@ int main(int argc, const char * argv[]) {
                 
                 // Switch to wanted keyboard layout
                 TISSelectInputSource(wantedSource);
+
+
+                NSNumber* pIsSelectCapable = (__bridge NSNumber*)(TISGetInputSourceProperty(wantedSource, kTISPropertyInputSourceIsSelectCapable));
+                BOOL canSelect = [pIsSelectCapable boolValue];
+                NSNumber *pIsEnableCapable= (__bridge NSNumber *)(TISGetInputSourceProperty(wantedSource, kTISPropertyInputSourceIsEnableCapable));
+                BOOL canEnable = [pIsEnableCapable boolValue];
+                if (canEnable) {
+                  TISEnableInputSource(wantedSource);
+                }
+                if (canSelect) {
+                  TISSelectInputSource(wantedSource);
+                }
             }
             exit(0);
         }
