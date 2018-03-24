@@ -25,16 +25,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Carbon/Carbon.h>
-
-
-OSStatus set_by_name(const char** argv, const NSString* prefix) {
-    NSString *macosx_layout_name;
-    macosx_layout_name = [prefix stringByAppendingString:[NSString stringWithUTF8String:*argv]];
-    NSArray* sources = CFBridgingRelease(TISCreateInputSourceList((__bridge CFDictionaryRef)@{ (__bridge NSString*)kTISPropertyInputSourceID :  macosx_layout_name}, FALSE));
-    TISInputSourceRef source = (__bridge TISInputSourceRef)sources[0];
-    OSStatus status = TISSelectInputSource(source);
-    return status;
-}
+#import "xkbswitch.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -192,8 +183,6 @@ int main(int argc, const char * argv[]) {
         int layout_by_num = 1;
         int set_mode = 0;
         int get_mode = 0;
-        // Get enabled keyboard layouts list
-        CFArrayRef sourceList = (CFArrayRef) TISCreateInputSourceList (NULL, false);
         
         while (--argc > 0 && (*++argv)[0] == '-') {
             while ((c = *++argv[0])) {
@@ -236,59 +225,24 @@ int main(int argc, const char * argv[]) {
         
         if (get_mode) {
             if (layout_by_name) {
-                // get current keyboard layout by name
-                TISInputSourceRef current_source = TISCopyCurrentKeyboardInputSource();
-                NSString *s = (__bridge NSString *)(TISGetInputSourceProperty(current_source, kTISPropertyInputSourceID));
-                // get last part of string (without com.apple.keylayout.)
-                NSUInteger last_dot_num = [s rangeOfString:@"." options:NSBackwardsSearch].location;
-                NSString *substring = [s substringFromIndex:last_dot_num + 1];
-                printf("%s", [substring UTF8String]);
+                char * value = Xkb_Switch_getXkbLayoutAsString();
+                printf("%s\n", value);
+                free(value);
             } else if (layout_by_num) {
-                // Get current keyborad layout
-                TISInputSourceRef currentSource =  TISCopyCurrentKeyboardInputSource();
-                long sourceCount = CFArrayGetCount(sourceList);
-                
-                // Search an index of the keyboard layout
-                for (int i = 0; i < sourceCount; i++)
-                    // If the index is found
-                    if (TISGetInputSourceProperty((TISInputSourceRef) CFArrayGetValueAtIndex(sourceList, i), kTISPropertyLocalizedName) == TISGetInputSourceProperty(currentSource, kTISPropertyLocalizedName)) {
-                        // Print the index
-                        printf("%d", i);
-                        
-                        return 0;
-                    }
+                int value = Xkb_Switch_getXkbLayoutAsNum();
+                printf("%d\n", value);
             }
-            exit(0);
         } else if (set_mode) {
             if (layout_by_name) {
-                OSStatus status = set_by_name(argv, @"com.apple.keylayout.");
-                if (status != noErr) {
-                    printf("There is no active layout with name in the default prefix \"%s\"\n", *argv);
-                    printf("Trying with the org.unknown.keylayout prefix...\n");
-                    status = set_by_name(argv, @"org.unknown.keylayout.");
-                    if (status != noErr) {
-                        printf("Unable to find an active layout with this name.\n");
-                    }
-                }
+                int result = Xkb_Switch_setXkbLayoutAsString(*argv);
+                return result;
             } else if (layout_by_num) {
                 // Get the first argument. It is index of wanted keyboard layout
                 int wantedSourceIndex = atoi(*argv);
-                // Get wanted keyboard layout by index
-                TISInputSourceRef wantedSource = (TISInputSourceRef) CFArrayGetValueAtIndex(sourceList, wantedSourceIndex);
-                
-                // If a keyboard layout with the index does not exist
-                if (!wantedSource) {
-                    printf("%d", -1);
-                    return 1;
-                }
-                
-                // Switch to wanted keyboard layout
-                TISSelectInputSource(wantedSource);
+                int result = Xkb_Switch_setXkbLayoutAsNum(wantedSourceIndex);
+                return result;
             }
-            exit(0);
         }
-        
-
     }
     return 0;
 }
