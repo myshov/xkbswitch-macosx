@@ -9,7 +9,7 @@ changing the keyboard layout in Mac&nbsp;OS&nbsp;X. The utility should work on a
 of Mac OS X since 10.6.
 
 ## Vim integration
-For integration with vim-xkbswith you need to install this [library](https://github.com/myshov/libxkbswitch-macosx) and follow instructions from there.
+For integration with vim-xkbswitch you need to install this [library](https://github.com/myshov/libxkbswitch-macosx) and follow instructions from there.
 
 ## Installation
 For installation put executable file from bin directory in any directory in your $PATH
