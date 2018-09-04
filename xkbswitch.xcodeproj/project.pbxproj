@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		826098FF2066571000DB6C67 /* xkbswitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 826098FE2066571000DB6C67 /* xkbswitch.m */; };
+		8260990E2066798400DB6C67 /* xkbswitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 826098FE2066571000DB6C67 /* xkbswitch.m */; };
+		8260990F2066799300DB6C67 /* xkbswitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 8260990020666FCA00DB6C67 /* xkbswitch.h */; };
+		82609911206679B400DB6C67 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0053BAA1A56B41800B2EB8F /* Carbon.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		B0053BA41A56B1AE00B2EB8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0053BA31A56B1AE00B2EB8F /* main.m */; };
 		B0053BAB1A56B41800B2EB8F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0053BAA1A56B41800B2EB8F /* Carbon.framework */; };
 /* End PBXBuildFile section */
@@ -24,12 +28,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		826098FE2066571000DB6C67 /* xkbswitch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xkbswitch.m; sourceTree = "<group>"; };
+		8260990020666FCA00DB6C67 /* xkbswitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xkbswitch.h; sourceTree = "<group>"; };
+		826099052066796400DB6C67 /* liblibxkbswitch.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = liblibxkbswitch.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0053BA01A56B1AE00B2EB8F /* xkbswitch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xkbswitch; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0053BA31A56B1AE00B2EB8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0053BAA1A56B41800B2EB8F /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		826099022066796400DB6C67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82609911206679B400DB6C67 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B0053B9D1A56B1AE00B2EB8F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -41,12 +56,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82609910206679B400DB6C67 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B0053B971A56B1AE00B2EB8F = {
 			isa = PBXGroup;
 			children = (
 				B0053BAA1A56B41800B2EB8F /* Carbon.framework */,
 				B0053BA21A56B1AE00B2EB8F /* xkbswitch */,
 				B0053BA11A56B1AE00B2EB8F /* Products */,
+				82609910206679B400DB6C67 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				B0053BA01A56B1AE00B2EB8F /* xkbswitch */,
+				826099052066796400DB6C67 /* liblibxkbswitch.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -62,13 +86,43 @@
 			isa = PBXGroup;
 			children = (
 				B0053BA31A56B1AE00B2EB8F /* main.m */,
+				826098FE2066571000DB6C67 /* xkbswitch.m */,
+				8260990020666FCA00DB6C67 /* xkbswitch.h */,
 			);
 			path = xkbswitch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		826099032066796400DB6C67 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8260990F2066799300DB6C67 /* xkbswitch.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		826099042066796400DB6C67 /* libxkbswitch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8260990B2066796500DB6C67 /* Build configuration list for PBXNativeTarget "libxkbswitch" */;
+			buildPhases = (
+				826099012066796400DB6C67 /* Sources */,
+				826099022066796400DB6C67 /* Frameworks */,
+				826099032066796400DB6C67 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libxkbswitch;
+			productName = libxkbswitch;
+			productReference = 826099052066796400DB6C67 /* liblibxkbswitch.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		B0053B9F1A56B1AE00B2EB8F /* xkbswitch */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0053BA71A56B1AE00B2EB8F /* Build configuration list for PBXNativeTarget "xkbswitch" */;
@@ -95,6 +149,10 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Alexander Myshov";
 				TargetAttributes = {
+					826099042066796400DB6C67 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
 					B0053B9F1A56B1AE00B2EB8F = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -113,22 +171,93 @@
 			projectRoot = "";
 			targets = (
 				B0053B9F1A56B1AE00B2EB8F /* xkbswitch */,
+				826099042066796400DB6C67 /* libxkbswitch */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		826099012066796400DB6C67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8260990E2066798400DB6C67 /* xkbswitch.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B0053B9C1A56B1AE00B2EB8F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B0053BA41A56B1AE00B2EB8F /* main.m in Sources */,
+				826098FF2066571000DB6C67 /* xkbswitch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		8260990C2066796500DB6C67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INSTALL_PATH = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8260990D2066796500DB6C67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INSTALL_PATH = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B0053BA51A56B1AE00B2EB8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -223,6 +352,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8260990B2066796500DB6C67 /* Build configuration list for PBXNativeTarget "libxkbswitch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8260990C2066796500DB6C67 /* Debug */,
+				8260990D2066796500DB6C67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B0053B9B1A56B1AE00B2EB8F /* Build configuration list for PBXProject "xkbswitch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
