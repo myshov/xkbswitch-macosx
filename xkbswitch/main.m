@@ -191,7 +191,9 @@ int main(int argc, const char * argv[]) {
         int layout_by_name = 0;
         int layout_by_num = 1;
         int set_mode = 0;
+        int set_next_mode = 0;
         int get_mode = 0;
+        int get_mode_all = 0;
         // Get enabled keyboard layouts list
         CFArrayRef sourceList = (CFArrayRef) TISCreateInputSourceList (NULL, false);
         
@@ -203,6 +205,12 @@ int main(int argc, const char * argv[]) {
                         break;
                     case 'g':
                         get_mode = 1;
+                        break;
+                    case 'a':
+                        get_mode_all = 1;
+                        break;
+                    case 'm':
+                        set_next_mode = 1;
                         break;
                     case 'n':
                         layout_by_num = 1;
@@ -228,6 +236,8 @@ int main(int argc, const char * argv[]) {
             printf("Usage: xkbswitch -g|s [-n|e] [value]\n"
                    "-g get mode\n"
                    "-s set mode\n"
+                   "-m set next mode\n"
+                   "-a get all modes\n"
                    "-n setting and getting by numeric mode (default)\n"
                    "-e setting and getting by string mode\n"
                    "-l list all available layouts (their names)\n");
@@ -242,18 +252,56 @@ int main(int argc, const char * argv[]) {
                 // get last part of string (without com.apple.keylayout.)
                 NSUInteger last_dot_num = [s rangeOfString:@"." options:NSBackwardsSearch].location;
                 NSString *substring = [s substringFromIndex:last_dot_num + 1];
-                printf("%s", [substring UTF8String]);
+                printf("%s\n", [substring UTF8String]);
             } else if (layout_by_num) {
                 // Get current keyborad layout
                 TISInputSourceRef currentSource =  TISCopyCurrentKeyboardInputSource();
                 long sourceCount = CFArrayGetCount(sourceList);
                 
                 // Search an index of the keyboard layout
-                for (int i = 0; i < sourceCount; i++)
+                for (int i = 1; i < sourceCount; i++)
                     // If the index is found
                     if (TISGetInputSourceProperty((TISInputSourceRef) CFArrayGetValueAtIndex(sourceList, i), kTISPropertyLocalizedName) == TISGetInputSourceProperty(currentSource, kTISPropertyLocalizedName)) {
                         // Print the index
-                        printf("%d", i);
+                        printf("%d\n", i);
+
+                        return 0;
+                    }
+            }
+            exit(0);
+        } else if (get_mode_all) { //Prints out all available modes and their corresponding numbers.
+            long sourceCount = CFArrayGetCount(sourceList);
+            for (int i = 1; i < sourceCount; i++){
+                    // get current keyboard layout by name
+                    TISInputSourceRef currentSource = (TISInputSourceRef) CFArrayGetValueAtIndex(sourceList, i);
+                    NSString *s = (__bridge NSString *)(TISGetInputSourceProperty(currentSource, kTISPropertyInputSourceID));
+                    // get last part of string (without com.apple.keylayout.)
+                    NSUInteger last_dot_num = [s rangeOfString:@"." options:NSBackwardsSearch].location;
+                    NSString *substring = [s substringFromIndex:last_dot_num + 1];
+                    printf("%d - %s\n", i, [substring UTF8String]);
+            }
+            exit(0);
+        } else if (set_next_mode) { //Sets next mode.
+            if (layout_by_name) {
+                printf("Layout by name not supported for set next.\n");
+            } else if (layout_by_num) {
+                // Get current keyborad layout
+                TISInputSourceRef currentSource =  TISCopyCurrentKeyboardInputSource();
+                long sourceCount = CFArrayGetCount(sourceList);
+                
+                // Search an index of the keyboard layout
+                for (int i = 1; i < sourceCount; i++)
+                    // If the index is found
+                    if (TISGetInputSourceProperty((TISInputSourceRef) CFArrayGetValueAtIndex(sourceList, i), kTISPropertyLocalizedName) == TISGetInputSourceProperty(currentSource, kTISPropertyLocalizedName)) {
+			if(i + 1 > sourceCount - 1) i = 0; //Avoid index going larger than array size.
+                	TISInputSourceRef wantedSource =(TISInputSourceRef) CFArrayGetValueAtIndex(sourceList, i + 1); //Set wantedSource as next source. Source 0 is not a valid source so we never use it.
+
+                        if (!wantedSource) {
+                            printf("%d\n", -1);
+                            return 1;
+                        }
+
+                        TISSelectInputSource(wantedSource);
                         
                         return 0;
                     }
@@ -278,7 +326,7 @@ int main(int argc, const char * argv[]) {
                 
                 // If a keyboard layout with the index does not exist
                 if (!wantedSource) {
-                    printf("%d", -1);
+                    printf("%d\n", -1);
                     return 1;
                 }
                 
