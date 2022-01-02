@@ -36,7 +36,7 @@ com.apple.keylayout.ABC
 
 ## Installation
 
-
+see [Release](https://github.com/xiehuc/xkbswitch-macosx/releases) Page
 
 ## License
 The MIT License (MIT)
