@@ -1,3 +1,9 @@
+======
+
+Note: xkbswitch-macosx original code is garbarge, there is 
+https://github.com/minoki/InputSourceSelector earlier and better, so i modify
+it's code to compatible with xkbswitch's api
+
 # Xkbswitch-macosx
 
 Console keyboard layout switcher for Mac OS X.
@@ -67,8 +73,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-======
-
-Note: xkbswitch-macosx original code is garbarge, there is 
-https://github.com/minoki/InputSourceSelector earlier and better, so i modify
-it's code to compatible with xkbswitch's api
