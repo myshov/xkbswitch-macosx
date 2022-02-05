@@ -1,9 +1,3 @@
-
-
-Note: xkbswitch-macosx original code is garbarge, there is 
-https://github.com/minoki/InputSourceSelector earlier and better, so i modify
-it's code to compatible with xkbswitch's api
-
 # Xkbswitch-macosx
 
 Console keyboard layout switcher for Mac OS X.
@@ -33,10 +27,6 @@ com.apple.keylayout.ABC
 
 1. [vim-barbaric](https://github.com/rlue/vim-barbaric)
 2. [vim-xkbswitch](https://github.com/lyokha/vim-xkbswitch)
-
-## Installation
-
-see [Release](https://github.com/xiehuc/xkbswitch-macosx/releases) Page
 
 ## License
 The MIT License (MIT)
