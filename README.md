@@ -3,46 +3,30 @@
 Console keyboard layout switcher for Mac OS X.
 
 The utility for switching current layout in terminal. You can use it whenever you need
-that functionality (for example, for tmux statusline when one is running in fullscreen
-terminal). Also you can use it as auxilary utility for [vim-xkbswitch](https://github.com/lyokha/vim-xkbswitch) plugin for
-changing the keyboard layout in Mac&nbsp;OS&nbsp;X. The utility should work on all versions
-of Mac OS X since 10.6.
+support Apple Silicon
 
 ## Vim integration
 For integration with vim-xkbswitch you need to install this [library](https://github.com/myshov/libxkbswitch-macosx) and follow instructions from there.
 
-## Installation
-For installation put executable file from bin directory in any directory in your $PATH
-variable. For example you can put it into  `/usr/local/bin` with this command (if source
-files of utility in your `Download` directory):
-```shell
-$ cp ~/Download/xkbswitch-macosx/bin/xkbswitch /usr/local/bin
+`make`
+
+## Usage
+
 ```
-## Usage:
-```
-xkbswitch -g|s [-n|e] [value]
-where:
--g - get number of layout
--s - set layout by number of list of layouts
--n - code mode (default mode)
--e - string mode (combine it with -g|s to get current layout name or set layouts by its name)
--l - list all available keyboard layouts (their names)
+> xkbswitch -l
+com.apple.keylayout.ABC
+im.rime.inputmethod.Squirrel.Rime
+
+> xkbswitch -g
+com.apple.keylayout.ABC
+
+> xkbswitch -s im.rime.inputmethod.Squirrel.Rime
 ```
 
-## Examples:
-#### set layout:
-```shell
-$ ./xkbswitch -se RussianWin
-$ ./xkbswitch -se US
-$ ./xkbswitch -s 2
-$ ./xkbswitch -s 1
-```
+## Vim integration
 
-#### get current layout:
-```shell
-$ ./xkbswitch -ge
-$ ./xkbswitch -g
-```
+1. [vim-barbaric](https://github.com/rlue/vim-barbaric)
+2. [vim-xkbswitch](https://github.com/lyokha/vim-xkbswitch)
 
 ## License
 The MIT License (MIT)
@@ -66,3 +50,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
